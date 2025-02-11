@@ -21,19 +21,20 @@ We explore both **traditional ML models (Naïve Bayes, SVM, Gradient Boosting)**
 
 ---
 <a id="collectdata"></a>
-## Data Collection
+### Data Collection
+
 We use the TMDB API to collect movie descriptions, genres, release dates, and other metadata.
----
 
 <a id="dataprocessing"></a>
-## Data Preprocessing
+### Data Preprocessing
+
 * Tokenization, stopword removal, and cleaning noisy descriptions
 * Filtering out incomplete or misleading entries
 * Transforming text data into numeric representations using *TF-IDF*
 
----
 <a id="tfids"></a>
-Feature Engineering (TF-IDF)
+## Feature Engineering (TF-IDF)
+
 To convert text into numerical features, we use TF-IDF vectorization, which helps emphasize important words while down-weighting common terms.
 
 ``` python
@@ -41,10 +42,10 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 tf_vec = TfidfVectorizer()
 X_train = tf_vec.fit_transform(train_corpus)
 ```
----
 
 <a id="genrepred"></a>
-## Model Training & Predictions
+### Model Training & Predictions
+
 We train multiple models to classify movies into genres:
 * Naïve Bayes – Baseline model
 * SVM (Support Vector Machine) – Improved classification performance
@@ -62,9 +63,9 @@ model = Pipeline([
 model.fit(X_train, y_train)
 ```
 
----
 <a id="tf"></a>
-## Semantic Textual Similarity
+### Semantic Textual Similarity
+
 We use The Universal Sentence Encoder to embed descriptions into a high-dimensional space, which allows us to compute similarity scores between new movies and our known training data genres.
 
 ```python
@@ -77,12 +78,8 @@ def embed(input):
 
 The genre of a new movie is determined by finding the **most similar** show description in the dataset.
 
-
----
-
 <a id="results"></a>
-## Results & Insights
+### Results & Insights
 * **Final Accuracy**: 80% <br>
 * **Key Improvements**: Merging overlapping genres and using ensemble methods led to 5% improvement.
----
 
